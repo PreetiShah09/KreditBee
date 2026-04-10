@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KreditBee — Series E Investment Memo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #06111f;
+    --navy-mid:  #0d1f35;
+    --navy-card: #0f2540;
+    --lime:      #c8e63c;
+    --lime-dim:  #8fa828;
+    --lime-glow: rgba(200,230,60,0.12);
+    --white:     #f0f4f8;
+    --muted:     #5a7a99;
+    --rule:      #1a3350;
+    --red:       #e05252;
+    --green:     #52c98a;
+    --bg:        #060e1a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* SCANLINE TEXTURE */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* PROGRESS */
+  #progress {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: var(--lime);
+    width: 0%; z-index: 1000;
+    box-shadow: 0 0 12px var(--lime);
+    transition: width 0.1s linear;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--navy);
+    border-bottom: 1px solid var(--rule);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,230,60,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,230,60,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .masthead-glow {
+    position: absolute;
+    top: -40%; left: -10%;
+    width: 60%; height: 200%;
+    background: radial-gradient(ellipse, rgba(200,230,60,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .masthead-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3.5rem 3rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ticker-bar {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0.1s;
+  }
+
+  .ticker-bar::before {
+    content: '●';
+    color: var(--lime);
+    animation: blink 1.5s infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .memo-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0.2s;
+  }
+
+  .masthead h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.3s;
+  }
+
+  .masthead h1 span {
+    color: var(--lime);
+    -webkit-text-stroke: 0px;
+  }
+
+  .masthead-sub {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 1rem;
+    max-width: 520px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0.45s;
+  }
+
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 3rem;
+    border-top: 1px solid var(--rule);
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0.6s;
+  }
+
+  .meta-cell {
+    padding: 1.25rem 0;
+    border-right: 1px solid var(--rule);
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-cell:not(:first-child) { padding-left: 1.25rem; }
+
+  .meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .meta-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .meta-val.lime { color: var(--lime); }
+  .meta-val.green { color: var(--green); }
+
+  /* CONVICTION STRIP */
+  .conviction-strip {
+    background: var(--lime);
+    color: var(--navy);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 0.85rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards 0.8s;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 5rem;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 48px; height: 2px;
+    background: var(--lime);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--lime);
+    background: var(--lime-glow);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(200,230,60,0.2);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+
+  p { color: #8ba8c4; margin-bottom: 1rem; }
+  p strong { color: var(--white); font-weight: 700; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 2px solid var(--lime);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--lime-glow);
+  }
+  .pull-quote p {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--white);
+    margin: 0;
+  }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 2rem 0;
+  }
+
+  .kpi-card {
+    background: var(--navy-card);
+    padding: 1.5rem 1.25rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kpi-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--lime);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .kpi-card:hover::before { transform: scaleX(1); }
+  .kpi-card:hover { background: var(--navy-mid); }
+
+  .kpi-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--lime);
+    line-height: 1;
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .kpi-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* TAM BARS */
+  .tam-funnel { margin: 2rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .tam-row { display: flex; align-items: center; gap: 1rem; }
+
+  .tam-lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    color: var(--lime);
+    width: 65px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .tam-track {
+    flex: 1; height: 40px;
+    background: var(--navy-card);
+    border: 1px solid var(--rule);
+    position: relative; overflow: hidden;
+  }
+
+  .tam-fill {
+    height: 100%;
+    position: absolute; left: 0; top: 0;
+    width: 0%;
+    transition: width 1.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .tam-track-text {
+    position: absolute; left: 1rem; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    z-index: 2;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    white-space: nowrap;
+  }
+
+  .tam-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    width: 80px;
+    flex-shrink: 0;
+    text-align: right;
+    letter-spacing: 0.04em;
+  }
+
+  /* FINANCIALS TABLE */
+  .fin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .fin-table thead tr {
+    background: var(--navy-card);
+    border-bottom: 2px solid var(--lime);
+  }
+
+  .fin-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lime);
+    padding: 0.75rem 1rem;
+    text-align: right;
+    font-weight: 400;
+  }
+  .fin-table th:first-child { text-align: left; }
+
+  .fin-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: #8ba8c4;
+  }
+  .fin-table td:first-child {
+    text-align: left;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+
+  .fin-table tr:hover td { background: rgba(200,230,60,0.03); }
+  .fin-table .highlight td { color: var(--lime); }
+  .fin-table .pos { color: var(--green) !important; }
+  .fin-table .neg { color: var(--red) !important; }
+
+  /* VALUATION BOXES */
+  .val-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 2rem 0;
+  }
+
+  .val-cell {
+    background: var(--navy-card);
+    padding: 1.5rem;
+  }
+
+  .val-method {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 0.5rem;
+  }
+
+  .val-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 0.03em;
+  }
+
+  .val-basis {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    line-height: 1.5;
+  }
+
+  /* SCENARIO TABLE */
+  .scenario-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .scenario-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    color: var(--lime);
+    padding: 0.75rem 1rem;
+    text-align: center;
+    background: var(--navy-card);
+    border-bottom: 2px solid var(--lime);
+    font-weight: 400;
+  }
+
+  .scenario-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: #8ba8c4;
+  }
+
+  .scenario-table td:first-child {
+    text-align: left;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+
+  .scenario-table .base { background: rgba(200,230,60,0.04); }
+  .scenario-table .base td { color: var(--lime); }
+  .scenario-table .base td:first-child { color: var(--lime); }
+
+  /* MOAT LIST */
+  .moat-list { list-style: none; margin: 1.5rem 0; }
+
+  .moat-item {
+    display: flex; gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+
+  .moat-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+    color: var(--navy);
+    background: var(--lime);
+    padding: 0.25rem 0.5rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    font-weight: 500;
+  }
+
+  .moat-body strong {
+    display: block;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .moat-body p { font-size: 0.88rem; margin: 0; }
+
+  /* COMP TABLE */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+
+  .comp-table thead tr {
+    background: var(--navy-card);
+    border-bottom: 2px solid var(--lime);
+  }
+
+  .comp-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lime);
+    padding: 0.7rem 0.85rem;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .comp-table td {
+    padding: 0.8rem 0.85rem;
+    border-bottom: 1px solid var(--rule);
+    color: #8ba8c4;
+    vertical-align: middle;
+  }
+
+  .comp-table .kb-row td {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .comp-table tr:hover td { background: rgba(200,230,60,0.03); }
+
+  .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid;
+  }
+  .badge-green { border-color: var(--green); color: var(--green); }
+  .badge-amber { border-color: #e0a952; color: #e0a952; }
+  .badge-red   { border-color: var(--red); color: var(--red); }
+
+  /* RISK GRID */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .risk-card {
+    background: var(--navy-card);
+    border: 1px solid var(--rule);
+    padding: 1.25rem;
+    position: relative;
+  }
+
+  .risk-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+
+  .risk-card.high::before { background: var(--red); }
+  .risk-card.med::before  { background: #e0a952; }
+  .risk-card.low::before  { background: var(--green); }
+
+  .risk-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .risk-body { font-size: 0.82rem; margin: 0; }
+
+  /* VERDICT */
+  .verdict-box {
+    background: var(--navy-card);
+    border: 1px solid var(--lime);
+    padding: 3rem;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-box::before {
+    content: 'BUY';
+    position: absolute;
+    right: -0.5rem; bottom: -1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11rem;
+    color: rgba(200,230,60,0.04);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .verdict-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .verdict-label::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 2px;
+    background: var(--lime);
+  }
+
+  .verdict-box h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.25rem;
+  }
+
+  .verdict-box h2 span { color: var(--lime); }
+
+  .verdict-box p { color: #8ba8c4; font-size: 0.95rem; max-width: 640px; }
+
+  .verdict-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+
+  .chip.active {
+    border-color: var(--lime);
+    color: var(--lime);
+    background: var(--lime-glow);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-txt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .disclaimer {
+    max-width: 960px;
+    margin: 0 auto 3rem;
+    padding: 0 3rem;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--lime), transparent);
+    margin: 1.5rem 0;
+    opacity: 0.4;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .content { padding: 2rem 1.5rem; }
+    .masthead-inner { padding: 2rem 1.5rem 0; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .risk-grid { grid-template-columns: 1fr; }
+    .val-grid { grid-template-columns: 1fr; }
+    footer, .disclaimer { padding: 1.5rem; }
+    .conviction-strip { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-grid-bg"></div>
+  <div class="masthead-glow"></div>
+  <div class="masthead-inner">
+    <div class="ticker-bar">
+      Series E · Pre-IPO Round &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; Digital Lending &nbsp;·&nbsp; India Fintech
+    </div>
+    <div class="memo-type">VC Investment Memorandum — Prepared by Preeti Shah</div>
+    <h1>KREDIT<span>BEE</span></h1>
+    <p class="masthead-sub">Democratising credit for 1.4 billion Indians — one loan at a time. A pre-IPO conviction call on India's most capital-efficient digital lender.</p>
+
+    <div class="meta-strip">
+      <div class="meta-cell">
+        <div class="meta-label">Round</div>
+        <div class="meta-val lime">Series E</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Raise</div>
+        <div class="meta-val">$280M</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Post-Money Val.</div>
+        <div class="meta-val">$1.5B</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">FY25 Net Profit</div>
+        <div class="meta-val green">₹473 Cr</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">IPO Target</div>
+        <div class="meta-val lime">FY27</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="conviction-strip">
+  <span>★ Analyst Conviction: HIGH</span>
+  <span>Pre-IPO Entry · 12–18 Month Horizon</span>
+  <span>Risk: Medium · Reward: High</span>
+  <span>Rec: STRONG BUY ★</span>
+</div>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <!-- 01. EXECUTIVE SUMMARY -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Executive Summary</h2>
+    </div>
+
+    <p>KreditBee is a Bengaluru-based digital lending platform founded in 2016 by Madhusudan Ekambaram, Karthikeyan Krishnaswamy, and Vivek Veda. It operates through its RBI-registered NBFC, KrazyBee Services Limited, offering personal loans, business loans, two-wheeler financing, and loans against property — primarily to underserved, thin-file borrowers in Tier-2 and Tier-3 India.</p>
+
+    <div class="pull-quote">
+      <p>"Only 22% of Indians have access to formal credit. KreditBee is not just a fintech — it is a financial infrastructure play on the formalisation of India's credit economy."</p>
+    </div>
+
+    <p>The Series E round — <strong>$280M at a $1.5B valuation</strong>, led by Motilal Oswal Alternates, Hornbill Capital, and MUFG-backed Dragon Funds — is explicitly positioned as the <strong>final private round before an FY27 IPO</strong>. This memo argues that entry at the Series E valuation presents an attractive pre-IPO opportunity: a profitable, high-growth NBFC with improving asset quality, AI-driven underwriting, and a 230M+ user base as the platform scales toward a ₹30,000 crore AUM target.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-num">230M+</span>
+        <span class="kpi-sub">App Downloads</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-num">60M+</span>
+        <span class="kpi-sub">Loans Facilitated</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-num">₹473Cr</span>
+        <span class="kpi-sub">FY25 Net Profit</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-num">$1.5B</span>
+        <span class="kpi-sub">AUM (Mar 2026)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02. MARKET SIZING -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Market Sizing</h2>
+    </div>
+
+    <p>India's formal credit gap is structural and generational. With only 22% of the population having access to formal credit, and new-to-credit (NTC) borrowers in Tier-2/3 cities largely excluded from traditional banking channels, the addressable opportunity for digital lenders is enormous — and largely untouched by incumbents.</p>
+
+    <div class="tam-funnel" id="tamFunnel">
+      <div class="tam-row">
+        <div class="tam-lbl">TAM</div>
+        <div class="tam-track">
+          <div class="tam-fill" data-width="100%" style="background: linear-gradient(90deg, #0d2a4a, #1a4a7a);"></div>
+          <span class="tam-track-text">India Total Formal Credit Market</span>
+        </div>
+        <div class="tam-val">$1.8T</div>
+      </div>
+      <div class="tam-row">
+        <div class="tam-lbl">SAM</div>
+        <div class="tam-track">
+          <div class="tam-fill" data-width="70%" style="background: linear-gradient(90deg, #1a3a5c, #2a5a8c);"></div>
+          <span class="tam-track-text">Retail + MSME Unsecured Lending</span>
+        </div>
+        <div class="tam-val">$480B</div>
+      </div>
+      <div class="tam-row">
+        <div class="tam-lbl">SOM</div>
+        <div class="tam-track">
+          <div class="tam-fill" data-width="42%" style="background: linear-gradient(90deg, #4a7a20, #7ab030);"></div>
+          <span class="tam-track-text">Digital Lending Addressable (NTC + Thin-File)</span>
+        </div>
+        <div class="tam-val">$90B</div>
+      </div>
+      <div class="tam-row">
+        <div class="tam-lbl">TARGET</div>
+        <div class="tam-track">
+          <div class="tam-fill" data-width="18%" style="background: linear-gradient(90deg, var(--lime-dim), var(--lime));"></div>
+          <span class="tam-track-text">KreditBee AUM Target (FY29)</span>
+        </div>
+        <div class="tam-val">$3.6B</div>
+      </div>
+    </div>
+
+    <p>Digital lending in India grew at a <strong>~39% CAGR between 2017 and 2023</strong>, driven by smartphone penetration, UPI infrastructure, and the Account Aggregator framework enabling instant bureau-less credit decisioning. NBFCs with proprietary data models — like KreditBee — are best positioned to capture this growth, as traditional banks remain constrained by KYC and collateral requirements.</p>
+  </section>
+
+  <!-- 03. BUSINESS MODEL -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Business Model</h2>
+    </div>
+
+    <p>KreditBee is a <strong>full-stack NBFC</strong> — unlike marketplace lenders that merely connect borrowers to banks, KreditBee underwrites and holds loans on its own book (own book AUM: ₹5,898 crore as of March 2025) while also co-lending with 10+ financial institutions to scale capital efficiently.</p>
+
+    <ul class="moat-list">
+      <li class="moat-item">
+        <span class="moat-tag">REV 1</span>
+        <div class="moat-body">
+          <strong>Net Interest Income (NII)</strong>
+          <p>Primary revenue driver. KreditBee lends at 18–30% IRR to borrowers, funds itself at ~11–13% cost of funds (aided by A/Stable credit rating). Net interest margin of ~9–12% on the own book is the engine of profitability.</p>
+        </div>
+      </li>
+      <li class="moat-item">
+        <span class="moat-tag">REV 2</span>
+        <div class="moat-body">
+          <strong>Co-Lending Fees</strong>
+          <p>KreditBee sources and underwrites borrowers, then co-lends with partner banks (80:20 ratio). It earns processing fees and interest spread on the co-lending book (₹4,204 crore of ₹10,102 crore total AUM), allowing capital-light balance sheet expansion.</p>
+        </div>
+      </li>
+      <li class="moat-item">
+        <span class="moat-tag">REV 3</span>
+        <div class="moat-body">
+          <strong>Embedded Financial Services</strong>
+          <p>Insurance cross-sells, credit score tools, UPI-based offerings, and the expanding two-wheeler and loan-against-property verticals diversify revenue and increase customer lifetime value beyond single-transaction loans.</p>
+        </div>
+      </li>
+      <li class="moat-item">
+        <span class="moat-tag">UNIT</span>
+        <div class="moat-body">
+          <strong>Unit Economics</strong>
+          <p>Average ticket size ~₹30,000 at 18–30% IRR. Customer acquisition cost declining as brand and organic installs grow (230M downloads). 18M unique loan customers with demonstrated repeat behaviour drives improving LTV/CAC ratio year-on-year.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 04. FINANCIALS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Financial Performance</h2>
+    </div>
+
+    <p>KreditBee is one of very few Indian digital lenders that is <strong>already profitable</strong> — a significant differentiator in a sector where most peers are still burning cash. Revenue grew 39% YoY in FY25, while net profit grew 66% YoY, reflecting strong operating leverage as fixed costs scale against a growing loan book.</p>
+
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>FY23</th>
+          <th>FY24</th>
+          <th>FY25</th>
+          <th>FY26E</th>
+          <th>FY27E</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Revenue (₹ Cr)</td>
+          <td>1,180</td>
+          <td>1,948</td>
+          <td>2,712</td>
+          <td>3,700</td>
+          <td>5,000</td>
+        </tr>
+        <tr class="highlight">
+          <td>Net Profit (₹ Cr)</td>
+          <td>142</td>
+          <td>285</td>
+          <td class="pos">473</td>
+          <td class="pos">680</td>
+          <td class="pos">950</td>
+        </tr>
+        <tr>
+          <td>AUM — Own Book (₹ Cr)</td>
+          <td>3,100</td>
+          <td>4,742</td>
+          <td>5,898</td>
+          <td>8,500</td>
+          <td>12,000</td>
+        </tr>
+        <tr>
+          <td>AUM — Total incl. Co-Lend (₹ Cr)</td>
+          <td>5,200</td>
+          <td>7,644</td>
+          <td>10,102</td>
+          <td>15,000</td>
+          <td>21,000</td>
+        </tr>
+        <tr>
+          <td>Gross NPA (%)</td>
+          <td>3.1%</td>
+          <td>2.3%</td>
+          <td class="pos">2.8%</td>
+          <td>2.5%</td>
+          <td>2.3%</td>
+        </tr>
+        <tr>
+          <td>Net Worth (₹ Cr)</td>
+          <td>1,650</td>
+          <td>2,537</td>
+          <td>3,107</td>
+          <td>4,200</td>
+          <td>5,500</td>
+        </tr>
+        <tr>
+          <td>ROE (%)</td>
+          <td>8.6%</td>
+          <td>11.2%</td>
+          <td class="pos">15.2%</td>
+          <td>16.2%</td>
+          <td>17.3%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><em>Note: FY26E and FY27E are analyst projections based on management guidance (₹15,000 Cr AUM target for FY26) and extrapolated growth rates. All figures in Indian Rupees Crore unless stated.</em></p>
+  </section>
+
+  <!-- 05. COMPETITIVE LANDSCAPE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Competitive Landscape</h2>
+    </div>
+
+    <p>The Indian digital lending space has three distinct tiers: marketplace aggregators (no balance sheet risk), co-lending platforms (hybrid), and full-stack NBFCs like KreditBee. KreditBee competes most directly with Fibe (EarlySalary), Kissht (Ring), and CASHe — all of which are pre-profitability or IPO-filing but with smaller AUMs and weaker credit ratings.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Model</th>
+          <th>AUM</th>
+          <th>Profitability</th>
+          <th>Valuation</th>
+          <th>Stage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="kb-row">
+          <td><strong>KreditBee</strong></td>
+          <td>Full-stack NBFC</td>
+          <td>₹10,102 Cr</td>
+          <td><span class="badge badge-green">Profitable</span></td>
+          <td>$1.5B</td>
+          <td><span class="badge badge-green">Pre-IPO</span></td>
+        </tr>
+        <tr>
+          <td>Fibe (EarlySalary)</td>
+          <td>NBFC + Co-lend</td>
+          <td>~₹6,000 Cr</td>
+          <td><span class="badge badge-amber">Near Break-even</span></td>
+          <td>~$600M</td>
+          <td><span class="badge badge-amber">Series D</span></td>
+        </tr>
+        <tr>
+          <td>Kissht (Ring)</td>
+          <td>NBFC</td>
+          <td>~₹5,000 Cr</td>
+          <td><span class="badge badge-amber">Near Break-even</span></td>
+          <td>~$500M</td>
+          <td><span class="badge badge-amber">Pre-IPO</span></td>
+        </tr>
+        <tr>
+          <td>CASHe</td>
+          <td>Marketplace</td>
+          <td>~₹2,000 Cr</td>
+          <td><span class="badge badge-red">Loss-making</span></td>
+          <td>~$200M</td>
+          <td><span class="badge badge-red">Series C</span></td>
+        </tr>
+        <tr>
+          <td>MoneyTap</td>
+          <td>Co-lending</td>
+          <td>~₹1,500 Cr</td>
+          <td><span class="badge badge-red">Loss-making</span></td>
+          <td>~$150M</td>
+          <td><span class="badge badge-red">Series C</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>KreditBee's key advantages over peers: <strong>(1)</strong> largest AUM among pure-play digital consumer lenders, <strong>(2)</strong> only one with A/Stable credit rating from CareEdge (reduces cost of funds by ~115 bps), <strong>(3)</strong> already profitable — removing IPO execution risk, and <strong>(4)</strong> MUFG strategic backing adding international credibility and balance sheet depth.</p>
+  </section>
+
+  <!-- 06. COMPETITIVE MOAT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Competitive Moat</h2>
+    </div>
+
+    <ul class="moat-list">
+      <li class="moat-item">
+        <span class="moat-tag">M1</span>
+        <div class="moat-body">
+          <strong>Proprietary Credit Model (AI Underwriting)</strong>
+          <p>60M+ loans across 18M customers generates one of India's richest thin-file credit datasets. The AI underwriting model improves with every loan, creating a data flywheel competitors cannot replicate without the same origination history. Gross NPA of 2.8% in FY25 validates the model's accuracy.</p>
+        </div>
+      </li>
+      <li class="moat-item">
+        <span class="moat-tag">M2</span>
+        <div class="moat-body">
+          <strong>Cost of Funds Advantage</strong>
+          <p>An A/Stable credit rating from CareEdge reduced KreditBee's cost of funds by ~115 basis points in FY25. In a lending business, every basis point of COF advantage translates directly to NIM expansion. Peers at lower credit ratings cannot access similar pricing.</p>
+        </div>
+      </li>
+      <li class="moat-item">
+        <span class="moat-tag">M3</span>
+        <div class="moat-body">
+          <strong>NBFC Licence + RBI Compliance Track Record</strong>
+          <p>Securing and maintaining an NBFC licence while scaling to ₹10,000+ Cr AUM demonstrates regulatory credibility. As RBI tightens digital lending norms, platforms without proper licensing face existential risk — KreditBee is structurally protected.</p>
+        </div>
+      </li>
+      <li class="moat-item">
+        <span class="moat-tag">M4</span>
+        <div class="moat-body">
+          <strong>Tier-2/3 Distribution Penetration</strong>
+          <p>70%+ of KreditBee's disbursals come from non-metro markets — a segment where bank branch density is low and digital alternatives have minimal competition. First-mover advantage in these geographies creates durable customer relationships.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 07. VALUATION -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Valuation Analysis</h2>
+    </div>
+
+    <p>For a profitable NBFC, we use three complementary valuation approaches: <strong>Price-to-Book Value (P/BV)</strong> — the standard NBFC metric, <strong>Price-to-Earnings (P/E)</strong> — applicable since KreditBee is profitable, and a <strong>VC Method (Pre-IPO Exit)</strong> to frame the investor return profile. All three methods converge around a $1.5–2.5B fair value range, suggesting the Series E entry at $1.5B is at the floor of fair value.</p>
+
+    <div class="divider"></div>
+
+    <div class="val-grid">
+      <div class="val-cell">
+        <div class="val-method">P/BV Multiple</div>
+        <div class="val-num">$1.6–2.2B</div>
+        <div class="val-basis">Net Worth FY25: ₹3,107 Cr (~$373M USD)<br>Peer P/BV: 4–6× (Bajaj Finance: 5.8×, Five Star: 4.2×)<br>Applied Multiple: 4.3–5.9× → $1.6–2.2B</div>
+      </div>
+      <div class="val-cell">
+        <div class="val-method">P/E Multiple</div>
+        <div class="val-num">$1.8–2.5B</div>
+        <div class="val-basis">FY25 Net Profit: ₹473 Cr (~$57M USD)<br>Listed NBFC P/E range: 25–35× (growth-stage)<br>Applied Multiple: 32–44× → $1.8–2.5B</div>
+      </div>
+      <div class="val-cell">
+        <div class="val-method">AUM Multiple</div>
+        <div class="val-num">$1.5–2.0B</div>
+        <div class="val-basis">Total AUM FY25: ₹10,102 Cr (~$1.22B USD)<br>Peer AUM multiples: 1.2–1.7× (Ugro Capital, Aye Finance)<br>Applied Multiple: 1.25–1.65× → $1.5–2.0B</div>
+      </div>
+      <div class="val-cell">
+        <div class="val-method">VC Method — IPO Exit</div>
+        <div class="val-num">IRR: 22–38%</div>
+        <div class="val-basis">Entry: $1.5B (Series E, Apr 2026)<br>FY27E Net Profit: ~$114M · Applied P/E: 30–40×<br>IPO Valuation: $3.4–4.6B · IRR over 18 months: 22–38%</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <table class="scenario-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>FY27E PAT</th>
+          <th>IPO P/E</th>
+          <th>IPO Valuation</th>
+          <th>MOIC</th>
+          <th>IRR (18 mo.)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bear — Slow growth + NPA spike</td>
+          <td>₹650 Cr</td>
+          <td>22×</td>
+          <td>$1.7B</td>
+          <td>1.1×</td>
+          <td>~8%</td>
+        </tr>
+        <tr class="base">
+          <td><strong>Base ★ — Mgmt guidance delivery</strong></td>
+          <td><strong>₹950 Cr</strong></td>
+          <td><strong>32×</strong></td>
+          <td><strong>$3.7B</strong></td>
+          <td><strong>2.5×</strong></td>
+          <td><strong>~58%</strong></td>
+        </tr>
+        <tr>
+          <td>Bull — AI-led margin expansion</td>
+          <td>₹1,250 Cr</td>
+          <td>40×</td>
+          <td>$6.0B</td>
+          <td>4.0×</td>
+          <td>~90%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><em>Base case IRR is high due to the short 18-month horizon to IPO. Over a 3-year hold post-IPO, blended IRR normalises to 28–35%, consistent with a high-conviction growth NBFC bet.</em></p>
+  </section>
+
+  <!-- 08. RISKS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Key Risks</h2>
+    </div>
+
+    <div class="risk-grid">
+      <div class="risk-card high">
+        <div class="risk-title">RBI Regulatory Risk</div>
+        <p class="risk-body">RBI has tightened norms on digital lending, penal charges, and FLDG structures. Any further tightening on unsecured NBFC lending (rate caps, LTV limits) could compress NIM and disrupt growth trajectory.</p>
+      </div>
+      <div class="risk-card high">
+        <div class="risk-title">NPA Deterioration</div>
+        <p class="risk-body">Gross NPA rose from 2.3% in FY24 to 2.8% in FY25 despite write-offs — a flag to monitor. In a stress scenario (job losses, macro slowdown), thin-file borrower defaults could spike rapidly, hitting profitability and capital ratios.</p>
+      </div>
+      <div class="risk-card med">
+        <div class="risk-title">IPO Market Risk</div>
+        <p class="risk-body">The FY27 IPO is contingent on favourable market conditions. A broader market correction or fintech sentiment downturn (as seen in 2022) could delay listing or compress the IPO multiple, shrinking exit value.</p>
+      </div>
+      <div class="risk-card med">
+        <div class="risk-title">Cost of Funds Risk</div>
+        <p class="risk-body">KreditBee's NIM advantage is partly driven by declining repo rates and its A/Stable rating. If RBI reverses its rate cutting cycle or if KreditBee's rating is downgraded, funding costs could rise and compress margins.</p>
+      </div>
+      <div class="risk-card low">
+        <div class="risk-title">Competition from UPI Credit</div>
+        <p class="risk-body">NPCI's credit-on-UPI initiative may enable banks to undercut NBFC interest rates at the point of transaction. However, KreditBee's Tier-2/3 distribution and thin-file focus provides a structural moat against bank competition.</p>
+      </div>
+      <div class="risk-card low">
+        <div class="risk-title">Entity Merger Execution</div>
+        <p class="risk-body">KreditBee is in the process of merging its Singapore and Indian tech entities ahead of IPO. Delays or complications in this process could push the listing timeline and create regulatory uncertainty.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09. VERDICT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Investment Verdict</h2>
+    </div>
+
+    <div class="verdict-box">
+      <div class="verdict-label">Final Recommendation · April 2026</div>
+      <h2>STRONG BUY AT <span>$1.5B</span><br>PRE-IPO ENTRY</h2>
+      <p>KreditBee is the most compelling pre-IPO fintech opportunity in India today. The Series E is priced at the floor of all three valuation methods, against a company that is already profitable, growing revenue at 39% YoY, and carrying the only A/Stable credit rating in its peer group. The 18-month IPO horizon creates a rare asymmetry: a base case 2.5× MOIC with downside protected by current profitability and AUM scale.</p>
+      <p style="margin-top: 0.75rem;">The principal risk is not business model viability — that is proven. The risk is regulatory tightening and IPO market timing. Both are manageable given the company's compliance track record and the strong institutional investor base (Motilal Oswal, Premji Invest, Advent, MUFG) that will support a well-managed listing.</p>
+      <p style="margin-top: 0.75rem;">For a portfolio, this is a <strong style="color:var(--white)">fintech infrastructure bet</strong> — not a consumer app. KreditBee owns the credit relationship with 18 million Indians who have no other formal lender. That relationship, powered by proprietary AI and a disciplined balance sheet, is the real asset.</p>
+      <div class="verdict-chips">
+        <span class="chip active">Strong Buy</span>
+        <span class="chip active">Pre-IPO Entry</span>
+        <span class="chip active">18-Month Horizon</span>
+        <span class="chip">Base IRR: ~58%</span>
+        <span class="chip">MOIC: 2.5× Base</span>
+        <span class="chip active">Profitable NBFC</span>
+        <span class="chip active">FY27 IPO</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-txt">KreditBee Investment Memo · Preeti Shah · April 2026</div>
+  <div class="footer-txt">For Portfolio & Academic Demonstration Only</div>
+</footer>
+
+<p class="disclaimer">Disclaimer: This memorandum is prepared solely for portfolio demonstration purposes and does not constitute investment advice or a solicitation to invest. Financial projections (FY26E, FY27E) are analyst estimates based on publicly available information, management guidance, and comparable company analysis. Actual results may differ materially. The author does not hold a financial interest in KreditBee or any related entity. All figures sourced from Entrackr, IBS Intelligence, CareEdge ratings, and publicly reported media as of April 2026.</p>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+  // TAM bars
+  const tamObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.tam-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+        tamObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const funnel = document.getElementById('tamFunnel');
+  if (funnel) tamObserver.observe(funnel);
+</script>
+</body>
+</html>
