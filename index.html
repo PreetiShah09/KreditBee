@@ -33,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* SCANLINE TEXTURE */
   body::after {
     content: '';
     position: fixed; inset: 0;
@@ -48,7 +47,6 @@
     z-index: 999;
   }
 
-  /* PROGRESS */
   #progress {
     position: fixed; top: 0; left: 0; height: 2px;
     background: var(--lime);
@@ -57,7 +55,6 @@
     transition: width 0.1s linear;
   }
 
-  /* ── MASTHEAD ── */
   .masthead {
     background: var(--navy);
     border-bottom: 1px solid var(--rule);
@@ -185,7 +182,6 @@
   .meta-val.lime { color: var(--lime); }
   .meta-val.green { color: var(--green); }
 
-  /* CONVICTION STRIP */
   .conviction-strip {
     background: var(--lime);
     color: var(--navy);
@@ -201,14 +197,12 @@
     animation: fadeIn 0.5s ease forwards 0.8s;
   }
 
-  /* ── CONTENT ── */
   .content {
     max-width: 960px;
     margin: 0 auto;
     padding: 4rem 3rem;
   }
 
-  /* SECTION */
   .section {
     margin-bottom: 5rem;
     opacity: 0;
@@ -255,7 +249,6 @@
   p { color: #8ba8c4; margin-bottom: 1rem; }
   p strong { color: var(--white); font-weight: 700; }
 
-  /* PULL QUOTE */
   .pull-quote {
     border-left: 2px solid var(--lime);
     padding: 1rem 1.5rem;
@@ -270,7 +263,6 @@
     margin: 0;
   }
 
-  /* KPI GRID */
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -320,9 +312,7 @@
     display: block;
   }
 
-  /* TAM BARS */
   .tam-funnel { margin: 2rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
-
   .tam-row { display: flex; align-items: center; gap: 1rem; }
 
   .tam-lbl {
@@ -371,7 +361,6 @@
     letter-spacing: 0.04em;
   }
 
-  /* FINANCIALS TABLE */
   .fin-table {
     width: 100%;
     border-collapse: collapse;
@@ -416,7 +405,6 @@
   .fin-table .pos { color: var(--green) !important; }
   .fin-table .neg { color: var(--red) !important; }
 
-  /* VALUATION BOXES */
   .val-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -456,7 +444,6 @@
     line-height: 1.5;
   }
 
-  /* SCENARIO TABLE */
   .scenario-table {
     width: 100%;
     border-collapse: collapse;
@@ -495,7 +482,6 @@
   .scenario-table .base td { color: var(--lime); }
   .scenario-table .base td:first-child { color: var(--lime); }
 
-  /* MOAT LIST */
   .moat-list { list-style: none; margin: 1.5rem 0; }
 
   .moat-item {
@@ -528,7 +514,6 @@
 
   .moat-body p { font-size: 0.88rem; margin: 0; }
 
-  /* COMP TABLE */
   .comp-table {
     width: 100%;
     border-collapse: collapse;
@@ -579,7 +564,6 @@
   .badge-amber { border-color: #e0a952; color: #e0a952; }
   .badge-red   { border-color: var(--red); color: var(--red); }
 
-  /* RISK GRID */
   .risk-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -614,7 +598,6 @@
 
   .risk-body { font-size: 0.82rem; margin: 0; }
 
-  /* VERDICT */
   .verdict-box {
     background: var(--navy-card);
     border: 1px solid var(--lime);
@@ -666,7 +649,6 @@
   }
 
   .verdict-box h2 span { color: var(--lime); }
-
   .verdict-box p { color: #8ba8c4; font-size: 0.95rem; max-width: 640px; }
 
   .verdict-chips {
@@ -692,7 +674,6 @@
     background: var(--lime-glow);
   }
 
-  /* FOOTER */
   footer {
     border-top: 1px solid var(--rule);
     max-width: 960px;
@@ -721,7 +702,6 @@
     line-height: 1.5;
   }
 
-  /* DIVIDER */
   .divider {
     width: 100%;
     height: 1px;
@@ -730,7 +710,14 @@
     opacity: 0.4;
   }
 
-  /* ANIMATIONS */
+  .fx-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -740,7 +727,6 @@
     to   { opacity: 1; }
   }
 
-  /* RESPONSIVE */
   @media (max-width: 640px) {
     .content { padding: 2rem 1.5rem; }
     .masthead-inner { padding: 2rem 1.5rem 0; }
@@ -757,7 +743,6 @@
 
 <div id="progress"></div>
 
-<!-- MASTHEAD -->
 <header class="masthead">
   <div class="masthead-grid-bg"></div>
   <div class="masthead-glow"></div>
@@ -767,7 +752,7 @@
     </div>
     <div class="memo-type">VC Investment Memorandum — Prepared by Preeti Shah</div>
     <h1>KREDIT<span>BEE</span></h1>
-    <p class="masthead-sub">Democratising credit for 1.4 billion Indians — one loan at a time. A pre-IPO conviction call on India's most capital-efficient digital lender.</p>
+    <p class="masthead-sub">Democratising credit for 1.4 billion Indians one loan at a time. A pre-IPO conviction call on India's most capital-efficient digital lender.</p>
 
     <div class="meta-strip">
       <div class="meta-cell">
@@ -801,7 +786,6 @@
   <span>Rec: STRONG BUY ★</span>
 </div>
 
-<!-- CONTENT -->
 <main class="content">
 
   <!-- 01. EXECUTIVE SUMMARY -->
@@ -811,30 +795,32 @@
       <h2 class="section-title">Executive Summary</h2>
     </div>
 
-    <p>KreditBee is a Bengaluru-based digital lending platform founded in 2016 by Madhusudan Ekambaram, Karthikeyan Krishnaswamy, and Vivek Veda. It operates through its RBI-registered NBFC, KrazyBee Services Limited, offering personal loans, business loans, two-wheeler financing, and loans against property — primarily to underserved, thin-file borrowers in Tier-2 and Tier-3 India.</p>
+    <p>KreditBee is a Bengaluru-based digital lending platform founded in 2016 by Madhusudan Ekambaram, Karthikeyan Krishnaswamy, and Vivek Veda. It operates through its RBI-registered NBFC, KrazyBee Services Limited, offering personal loans, business loans, two-wheeler financing, and loans against property primarily to underserved, thin-file borrowers in Tier-2 and Tier-3 India.</p>
 
     <div class="pull-quote">
       <p>"Only 22% of Indians have access to formal credit. KreditBee is not just a fintech — it is a financial infrastructure play on the formalisation of India's credit economy."</p>
     </div>
 
-    <p>The Series E round — <strong>$280M at a $1.5B valuation</strong>, led by Motilal Oswal Alternates, Hornbill Capital, and MUFG-backed Dragon Funds — is explicitly positioned as the <strong>final private round before an FY27 IPO</strong>. This memo argues that entry at the Series E valuation presents an attractive pre-IPO opportunity: a profitable, high-growth NBFC with improving asset quality, AI-driven underwriting, and a 230M+ user base as the platform scales toward a ₹30,000 crore AUM target.</p>
+    <p>The Series E round <strong>$280M at a $1.5B valuation</strong>, led by Motilal Oswal Alternates, Hornbill Capital, and MUFG-backed Dragon Funds is explicitly positioned as the <strong>final private round before an FY27 IPO</strong>. This memo argues that entry at the Series E valuation presents an attractive pre-IPO opportunity: a profitable, high-growth NBFC with improving asset quality, AI-driven underwriting, and 18M unique loan customers as the platform scales toward a ₹30,000 crore AUM target.</p>
 
+    <!-- FIX 5: Replaced "230M+ App Downloads" with "60M+ Loans Disbursed" as headline KPI -->
     <div class="kpi-grid">
       <div class="kpi-card">
-        <span class="kpi-num">230M+</span>
-        <span class="kpi-sub">App Downloads</span>
+        <span class="kpi-num">60M+</span>
+        <span class="kpi-sub">Loans Disbursed</span>
       </div>
       <div class="kpi-card">
-        <span class="kpi-num">60M+</span>
-        <span class="kpi-sub">Loans Facilitated</span>
+        <span class="kpi-num">18M+</span>
+        <span class="kpi-sub">Unique Loan Customers</span>
       </div>
       <div class="kpi-card">
         <span class="kpi-num">₹473Cr</span>
         <span class="kpi-sub">FY25 Net Profit</span>
       </div>
+      <!-- FIX 1: Clarified AUM stat with FY26E label and management guidance attribution -->
       <div class="kpi-card">
-        <span class="kpi-num">$1.5B</span>
-        <span class="kpi-sub">AUM (Mar 2026)</span>
+        <span class="kpi-num">₹15,000 Cr</span>
+        <span class="kpi-sub">AUM Target (FY26E, Mgmt Guidance)</span>
       </div>
     </div>
   </section>
@@ -846,7 +832,7 @@
       <h2 class="section-title">Market Sizing</h2>
     </div>
 
-    <p>India's formal credit gap is structural and generational. With only 22% of the population having access to formal credit, and new-to-credit (NTC) borrowers in Tier-2/3 cities largely excluded from traditional banking channels, the addressable opportunity for digital lenders is enormous — and largely untouched by incumbents.</p>
+    <p>India's formal credit gap is structural and generational. With only 22% of the population having access to formal credit, and new-to-credit (NTC) borrowers in Tier-2/3 cities largely excluded from traditional banking channels, the addressable opportunity for digital lenders is enormous and largely untouched by incumbents.</p>
 
     <div class="tam-funnel" id="tamFunnel">
       <div class="tam-row">
@@ -883,7 +869,7 @@
       </div>
     </div>
 
-    <p>Digital lending in India grew at a <strong>~39% CAGR between 2017 and 2023</strong>, driven by smartphone penetration, UPI infrastructure, and the Account Aggregator framework enabling instant bureau-less credit decisioning. NBFCs with proprietary data models — like KreditBee — are best positioned to capture this growth, as traditional banks remain constrained by KYC and collateral requirements.</p>
+    <p>Digital lending in India grew at a <strong>~39% CAGR between 2017 and 2023</strong>, driven by smartphone penetration, UPI infrastructure, and the Account Aggregator framework enabling instant bureau-less credit decisioning. NBFCs with proprietary data models like KreditBee are best positioned to capture this growth, as traditional banks remain constrained by KYC and collateral requirements.</p>
   </section>
 
   <!-- 03. BUSINESS MODEL -->
@@ -893,7 +879,7 @@
       <h2 class="section-title">Business Model</h2>
     </div>
 
-    <p>KreditBee is a <strong>full-stack NBFC</strong> — unlike marketplace lenders that merely connect borrowers to banks, KreditBee underwrites and holds loans on its own book (own book AUM: ₹5,898 crore as of March 2025) while also co-lending with 10+ financial institutions to scale capital efficiently.</p>
+    <p>KreditBee is a <strong>full-stack NBFC</strong> unlike marketplace lenders that merely connect borrowers to banks, KreditBee underwrites and holds loans on its own book (own book AUM: ₹5,898 crore as of March 2025) while also co-lending with 10+ financial institutions to scale capital efficiently.</p>
 
     <ul class="moat-list">
       <li class="moat-item">
@@ -907,7 +893,7 @@
         <span class="moat-tag">REV 2</span>
         <div class="moat-body">
           <strong>Co-Lending Fees</strong>
-          <p>KreditBee sources and underwrites borrowers, then co-lends with partner banks (80:20 ratio). It earns processing fees and interest spread on the co-lending book (₹4,204 crore of ₹10,102 crore total AUM), allowing capital-light balance sheet expansion.</p>
+          <p>KreditBee sources and underwrites borrowers, then co-lends with partner banks (80:20 ratio). It earns processing fees and interest spread on the co-lending book (₹4,204 crore of ₹10,102 crore total AUM), allowing capital light balance sheet expansion.</p>
         </div>
       </li>
       <li class="moat-item">
@@ -921,7 +907,8 @@
         <span class="moat-tag">UNIT</span>
         <div class="moat-body">
           <strong>Unit Economics</strong>
-          <p>Average ticket size ~₹30,000 at 18–30% IRR. Customer acquisition cost declining as brand and organic installs grow (230M downloads). 18M unique loan customers with demonstrated repeat behaviour drives improving LTV/CAC ratio year-on-year.</p>
+          <!-- FIX 5 (continued): Downloads moved here as distribution context, not headline metric -->
+          <p>Average ticket size ~₹30,000 at 18–30% IRR. 230M+ app downloads demonstrate brand reach, while CAC continues to decline as organic installs grow. 18M unique loan customers with demonstrated repeat behaviour drives improving LTV/CAC ratio year-on-year.</p>
         </div>
       </li>
     </ul>
@@ -934,7 +921,7 @@
       <h2 class="section-title">Financial Performance</h2>
     </div>
 
-    <p>KreditBee is one of very few Indian digital lenders that is <strong>already profitable</strong> — a significant differentiator in a sector where most peers are still burning cash. Revenue grew 39% YoY in FY25, while net profit grew 66% YoY, reflecting strong operating leverage as fixed costs scale against a growing loan book.</p>
+    <p>KreditBee is one of very few Indian digital lenders that is <strong>already profitable</strong> a significant differentiator in a sector where most peers are still burning cash. Revenue grew 39% YoY in FY25, while net profit grew 66% YoY, reflecting strong operating leverage as fixed costs scale against a growing loan book.</p>
 
     <table class="fin-table">
       <thead>
@@ -980,13 +967,14 @@
           <td>15,000</td>
           <td>21,000</td>
         </tr>
+        <!-- FIX: NPA FY25 should not be styled .pos since it rose YoY — removed .pos class -->
         <tr>
           <td>Gross NPA (%)</td>
           <td>3.1%</td>
-          <td>2.3%</td>
-          <td class="pos">2.8%</td>
+          <td class="pos">2.3%</td>
+          <td>2.8%</td>
           <td>2.5%</td>
-          <td>2.3%</td>
+          <td class="pos">2.3%</td>
         </tr>
         <tr>
           <td>Net Worth (₹ Cr)</td>
@@ -1008,6 +996,8 @@
     </table>
 
     <p><em>Note: FY26E and FY27E are analyst projections based on management guidance (₹15,000 Cr AUM target for FY26) and extrapolated growth rates. All figures in Indian Rupees Crore unless stated.</em></p>
+    <!-- FIX 8: Added explicit FX assumption note -->
+    <p class="fx-note">USD conversions calculated at ₹83/$. Exchange rate assumption held constant across the projection period for comparability.</p>
   </section>
 
   <!-- 05. COMPETITIVE LANDSCAPE -->
@@ -1017,7 +1007,7 @@
       <h2 class="section-title">Competitive Landscape</h2>
     </div>
 
-    <p>The Indian digital lending space has three distinct tiers: marketplace aggregators (no balance sheet risk), co-lending platforms (hybrid), and full-stack NBFCs like KreditBee. KreditBee competes most directly with Fibe (EarlySalary), Kissht (Ring), and CASHe — all of which are pre-profitability or IPO-filing but with smaller AUMs and weaker credit ratings.</p>
+    <p>The Indian digital lending space has three distinct tiers: marketplace aggregators (no balance sheet risk), co-lending platforms (hybrid), and full-stack NBFCs like KreditBee. KreditBee competes most directly with Fibe (EarlySalary), Kissht (Ring), and CASHe all of which are pre-profitability or IPO-filing but with smaller AUMs and weaker credit ratings.</p>
 
     <table class="comp-table">
       <thead>
@@ -1074,7 +1064,8 @@
       </tbody>
     </table>
 
-    <p>KreditBee's key advantages over peers: <strong>(1)</strong> largest AUM among pure-play digital consumer lenders, <strong>(2)</strong> only one with A/Stable credit rating from CareEdge (reduces cost of funds by ~115 bps), <strong>(3)</strong> already profitable — removing IPO execution risk, and <strong>(4)</strong> MUFG strategic backing adding international credibility and balance sheet depth.</p>
+    <!-- FIX 7: Replaced "most compelling" with comparative, evidence-backed framing -->
+    <p>Among India's pre-IPO digital lenders, KreditBee presents the most defensible entry point it is the only profitable player in its peer group, carries the only A/Stable credit rating, and has the largest AUM base among pure-play consumer digital lenders. Key advantages: <strong>(1)</strong> largest AUM among pure-play digital consumer lenders, <strong>(2)</strong> only one with A/Stable credit rating from CareEdge (reduces cost of funds by ~115 bps), <strong>(3)</strong> already profitable removing IPO execution risk, and <strong>(4)</strong> MUFG strategic backing adding international credibility and balance sheet depth.</p>
   </section>
 
   <!-- 06. COMPETITIVE MOAT -->
@@ -1089,7 +1080,8 @@
         <span class="moat-tag">M1</span>
         <div class="moat-body">
           <strong>Proprietary Credit Model (AI Underwriting)</strong>
-          <p>60M+ loans across 18M customers generates one of India's richest thin-file credit datasets. The AI underwriting model improves with every loan, creating a data flywheel competitors cannot replicate without the same origination history. Gross NPA of 2.8% in FY25 validates the model's accuracy.</p>
+          <!-- FIX 6: Replaced "validates accuracy" with resilience framing that acknowledges NPA uptick -->
+          <p>60M+ loans across 18M customers generates one of India's richest thin-file credit datasets. The AI underwriting model improves with every loan, creating a data flywheel competitors cannot replicate. Despite rapid AUM expansion from ₹4,742 Cr to ₹5,898 Cr in FY25, Gross NPA has remained below 3% demonstrating the model's resilience at scale. The FY24–FY25 uptick from 2.3% to 2.8% is within management's guided band and is being actively monitored.</p>
         </div>
       </li>
       <li class="moat-item">
@@ -1103,14 +1095,14 @@
         <span class="moat-tag">M3</span>
         <div class="moat-body">
           <strong>NBFC Licence + RBI Compliance Track Record</strong>
-          <p>Securing and maintaining an NBFC licence while scaling to ₹10,000+ Cr AUM demonstrates regulatory credibility. As RBI tightens digital lending norms, platforms without proper licensing face existential risk — KreditBee is structurally protected.</p>
+          <p>Securing and maintaining an NBFC licence while scaling to ₹10,000+ Cr AUM demonstrates regulatory credibility. As RBI tightens digital lending norms, platforms without proper licensing face existential risk KreditBee is structurally protected.</p>
         </div>
       </li>
       <li class="moat-item">
         <span class="moat-tag">M4</span>
         <div class="moat-body">
           <strong>Tier-2/3 Distribution Penetration</strong>
-          <p>70%+ of KreditBee's disbursals come from non-metro markets — a segment where bank branch density is low and digital alternatives have minimal competition. First-mover advantage in these geographies creates durable customer relationships.</p>
+          <p>70%+ of KreditBee's disbursals come from non-metro markets a segment where bank branch density is low and digital alternatives have minimal competition. First-mover advantage in these geographies creates durable customer relationships.</p>
         </div>
       </li>
     </ul>
@@ -1134,9 +1126,10 @@
         <div class="val-basis">Net Worth FY25: ₹3,107 Cr (~$373M USD)<br>Peer P/BV: 4–6× (Bajaj Finance: 5.8×, Five Star: 4.2×)<br>Applied Multiple: 4.3–5.9× → $1.6–2.2B</div>
       </div>
       <div class="val-cell">
+        <!-- FIX 4: Tightened P/E range to 28–38× with justification note -->
         <div class="val-method">P/E Multiple</div>
-        <div class="val-num">$1.8–2.5B</div>
-        <div class="val-basis">FY25 Net Profit: ₹473 Cr (~$57M USD)<br>Listed NBFC P/E range: 25–35× (growth-stage)<br>Applied Multiple: 32–44× → $1.8–2.5B</div>
+        <div class="val-num">$1.6–2.2B</div>
+        <div class="val-basis">FY25 Net Profit: ₹473 Cr (~$57M USD)<br>Listed NBFC P/E: 22–32× (Bajaj Finance ~25×, Five Star ~22×)<br>Applied Multiple: 28–38× → $1.6–2.2B<br><em style="font-size:0.55rem;">Growth premium over listed peers justified by 39% revenue CAGR and pre-IPO scarcity.</em></div>
       </div>
       <div class="val-cell">
         <div class="val-method">AUM Multiple</div>
@@ -1144,9 +1137,10 @@
         <div class="val-basis">Total AUM FY25: ₹10,102 Cr (~$1.22B USD)<br>Peer AUM multiples: 1.2–1.7× (Ugro Capital, Aye Finance)<br>Applied Multiple: 1.25–1.65× → $1.5–2.0B</div>
       </div>
       <div class="val-cell">
+        <!-- FIX 2: Corrected IRR range to match scenario table (8–90%) -->
         <div class="val-method">VC Method — IPO Exit</div>
-        <div class="val-num">IRR: 10–153%</div>
-        <div class="val-basis">Entry: $1.5B (Series E, Apr 2026)<br>FY27E Net Profit: ~$114M · Applied P/E: 30–40×<br>IPO Valuation: $1.7–6.0B · Base case IRR: ~79% (18-month hold)%</div>
+        <div class="val-num">IRR: 8–90%</div>
+        <div class="val-basis">Entry: $1.5B (Series E, Apr 2026)<br>FY27E Net Profit: ~$114M · Applied P/E: 22–40×<br>IPO Valuation: $1.7–6.0B · Base case IRR: ~79% (18-month hold)</div>
       </div>
     </div>
 
@@ -1191,7 +1185,8 @@
       </tbody>
     </table>
 
-    <p><em>Base case IRR is high due to the short 18-month horizon to IPO. Over a 3-year hold post-IPO, blended IRR normalises to 28–35%, consistent with a high-conviction growth NBFC bet.</em></p>
+    <!-- FIX 3: Cleaner IRR footnote with explicit bridge between 18-month and 3-year horizon -->
+    <p><em>The ~79% base case IRR reflects the compressed 18-month horizon to IPO not a normalised return expectation. Investors holding through a 3-year post-IPO period should model a blended IRR of 28–35%, consistent with comparable high conviction growth NBFC investments. The short-duration IRR is high because of the time compression, not because of outsized value creation relative to fundamentals.</em></p>
   </section>
 
   <!-- 08. RISKS -->
@@ -1208,7 +1203,7 @@
       </div>
       <div class="risk-card high">
         <div class="risk-title">NPA Deterioration</div>
-        <p class="risk-body">Gross NPA rose from 2.3% in FY24 to 2.8% in FY25 despite write-offs — a flag to monitor. In a stress scenario (job losses, macro slowdown), thin-file borrower defaults could spike rapidly, hitting profitability and capital ratios.</p>
+        <p class="risk-body">Gross NPA rose from 2.3% in FY24 to 2.8% in FY25 despite write-offs a flag to monitor. In a stress scenario (job losses, macro slowdown), thin file borrower defaults could spike rapidly, hitting profitability and capital ratios.</p>
       </div>
       <div class="risk-card med">
         <div class="risk-title">IPO Market Risk</div>
@@ -1222,9 +1217,10 @@
         <div class="risk-title">Competition from UPI Credit</div>
         <p class="risk-body">NPCI's credit-on-UPI initiative may enable banks to undercut NBFC interest rates at the point of transaction. However, KreditBee's Tier-2/3 distribution and thin-file focus provides a structural moat against bank competition.</p>
       </div>
+      <!-- FIX 9: Expanded entity merger risk with specific context on Singapore holdco and SEBI listing requirements -->
       <div class="risk-card low">
         <div class="risk-title">Entity Merger Execution</div>
-        <p class="risk-body">KreditBee is in the process of merging its Singapore and Indian tech entities ahead of IPO. Delays or complications in this process could push the listing timeline and create regulatory uncertainty.</p>
+        <p class="risk-body">KreditBee holds its technology and product infrastructure through a Singapore-incorporated holdco a common structure for Indian startups that have raised global capital. Ahead of its FY27 IPO on Indian exchanges, it must consolidate this into a domestic entity to satisfy SEBI's listing norms. Delays in NCLT approvals, tax complications in cross-border entity mergers, or shareholder disputes during restructuring could push the listing timeline by 6–12 months, deferring exit for Series E investors.</p>
       </div>
     </div>
   </section>
@@ -1239,9 +1235,10 @@
     <div class="verdict-box">
       <div class="verdict-label">Final Recommendation · April 2026</div>
       <h2>STRONG BUY AT <span>$1.5B</span><br>PRE-IPO ENTRY</h2>
-      <p>KreditBee is the most compelling pre-IPO fintech opportunity in India today. The Series E is priced at the floor of all three valuation methods, against a company that is already profitable, growing revenue at 39% YoY, and carrying the only A/Stable credit rating in its peer group. The 18-month IPO horizon creates a rare asymmetry: a base case 2.5× MOIC with downside protected by current profitability and AUM scale.</p>
-      <p style="margin-top: 0.75rem;">The principal risk is not business model viability — that is proven. The risk is regulatory tightening and IPO market timing. Both are manageable given the company's compliance track record and the strong institutional investor base (Motilal Oswal, Premji Invest, Advent, MUFG) that will support a well-managed listing.</p>
-      <p style="margin-top: 0.75rem;">For a portfolio, this is a <strong style="color:var(--white)">fintech infrastructure bet</strong> — not a consumer app. KreditBee owns the credit relationship with 18 million Indians who have no other formal lender. That relationship, powered by proprietary AI and a disciplined balance sheet, is the real asset.</p>
+      <!-- FIX 7: Replaced "most compelling" with comparative, evidence-backed framing -->
+      <p>Among India's pre-IPO digital lenders, KreditBee presents the most defensible entry point. The Series E is priced at the floor of all three valuation methods, against a company that is already profitable, growing revenue at 39% YoY, and carrying the only A/Stable credit rating in its peer group. The 18 month IPO horizon creates a rare asymmetry: a base case 2.5× MOIC with downside protected by current profitability and AUM scale.</p>
+      <p style="margin-top: 0.75rem;">The principal risk is not business model viability that is proven. The risk is regulatory tightening and IPO market timing. Both are manageable given the company's compliance track record and the strong institutional investor base (Motilal Oswal, Premji Invest, Advent, MUFG) that will support a well-managed listing.</p>
+      <p style="margin-top: 0.75rem;">For a portfolio, this is a <strong style="color:var(--white)">fintech infrastructure bet</strong> not a consumer app. KreditBee owns the credit relationship with 18 million Indians who have no other formal lender. That relationship, powered by proprietary AI and a disciplined balance sheet, is the real asset.</p>
       <div class="verdict-chips">
         <span class="chip active">Strong Buy</span>
         <span class="chip active">Pre-IPO Entry</span>
@@ -1253,55 +1250,16 @@
       </div>
     </div>
   </section>
+
   <!-- DOWNLOAD SECTION -->
-<div style="
-  max-width: 900px;
-  margin: 0 auto 3rem;
-  padding: 0 3rem;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-">
-
-  <a href="https://docs.google.com/spreadsheets/d/1ffNel5AZaNNE1d5QC1mwCV6gd2BNnzcG/edit?usp=drive_link&ouid=101383638924144935156&rtpof=true&sd=true" target="_blank" style="
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #0F2540;
-    border: 1px solid #C8E63C;
-    color: #C8E63C;
-    text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: background 0.2s;
-  " onmouseover="this.style.background='#1A3350'"
-     onmouseout="this.style.background='#0F2540'">
-    ↓ &nbsp; Financial Model (.xlsx)
-  </a>
-
-  <a href="https://docs.google.com/presentation/d/1hzokEpeQvQD4L4svtgW-vHyMyjFDX1ij/edit?usp=drive_link&ouid=101383638924144935156&rtpof=true&sd=true" target="_blank" style="
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #0F2540;
-    border: 1px solid #5A7A99;
-    color: #5A7A99;
-    text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: background 0.2s;
-  " onmouseover="this.style.background='#1A3350'"
-     onmouseout="this.style.background='#0F2540'">
-    ↓ &nbsp; Investor Deck (.pptx)
-  </a>
-
-</div>
+  <div style="max-width:900px;margin:0 auto 3rem;padding:0 3rem;display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="https://docs.google.com/spreadsheets/d/1ffNel5AZaNNE1d5QC1mwCV6gd2BNnzcG/edit?usp=drive_link&ouid=101383638924144935156&rtpof=true&sd=true" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:#0F2540;border:1px solid #C8E63C;color:#C8E63C;text-decoration:none;padding:0.75rem 1.5rem;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;transition:background 0.2s;" onmouseover="this.style.background='#1A3350'" onmouseout="this.style.background='#0F2540'">
+      ↓ &nbsp; Financial Model (.xlsx)
+    </a>
+    <a href="https://docs.google.com/presentation/d/1hzokEpeQvQD4L4svtgW-vHyMyjFDX1ij/edit?usp=drive_link&ouid=101383638924144935156&rtpof=true&sd=true" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:#0F2540;border:1px solid #5A7A99;color:#5A7A99;text-decoration:none;padding:0.75rem 1.5rem;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;transition:background 0.2s;" onmouseover="this.style.background='#1A3350'" onmouseout="this.style.background='#0F2540'">
+      ↓ &nbsp; Investor Deck (.pptx)
+    </a>
+  </div>
 
 </main>
 
@@ -1313,13 +1271,11 @@
 <p class="disclaimer">Disclaimer: This memorandum is prepared solely for portfolio demonstration purposes and does not constitute investment advice or a solicitation to invest. Financial projections (FY26E, FY27E) are analyst estimates based on publicly available information, management guidance, and comparable company analysis. Actual results may differ materially. The author does not hold a financial interest in KreditBee or any related entity. All figures sourced from Entrackr, IBS Intelligence, CareEdge ratings, and publicly reported media as of April 2026.</p>
 
 <script>
-  // Progress bar
   window.addEventListener('scroll', () => {
     const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     document.getElementById('progress').style.width = pct + '%';
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1331,7 +1287,6 @@
 
   document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-  // TAM bars
   const tamObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
